@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import shortid from 'shortid';
 // import ColorPicker from './components/ColorPicker';
 // import Counter from './components/Counter';
-import Container from './Container';
-import TodoList from './TodoList';
-import TodoEditor from './TodoEditor';
-import Filter from './Filter';
+import Container from '../Container';
+import TodoList from '../TodoList';
+import TodoEditor from '../TodoEditor';
+import Filter from '../Filter';
 // import Form from './components/Form';
-import initialTodos from './todos.json';
+import initialTodos from 'components/todos.json';
 
 export class App extends Component {
   state = {
@@ -119,3 +119,22 @@ export class App extends Component {
 //   { label: 'pink', color: '#E91E63' },
 //   { label: 'indigo', color: '#3F51B5' },
 // ];
+
+
+//! old --------------------------------------------
+// export const App = () => {
+//   return (
+//     <div
+//       style={{
+//         height: '100vh',
+//         display: 'flex',
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         fontSize: 40,
+//         color: '#010101'
+//       }}
+//     >
+//       React homework template
+//     </div>
+//   );
+// };
