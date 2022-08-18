@@ -12,7 +12,7 @@ class Form extends Component {
   nameInputId = shortid.generate();
   tagInputId = shortid.generate();
 
-  handleChange = e => {
+  handleChange2 = e => {
     const { name, value } = e.currentTarget;
 
     this.setState({ [name]: value });
@@ -45,7 +45,7 @@ class Form extends Component {
             type="text"
             name="name"
             value={this.state.name}
-            onChange={this.handleChange}
+            onChange={this.handleChange2}
             id={this.nameInputId}
           />
         </label>
@@ -56,7 +56,7 @@ class Form extends Component {
             type="text"
             name="tag"
             value={this.state.tag}
-            onChange={this.handleChange}
+            onChange={this.handleChange2}
             id={this.tagInputId}
           />
         </label>
@@ -67,7 +67,7 @@ class Form extends Component {
             type="radio"
             name="experience"
             value="junior"
-            onChange={this.handleChange}
+            onChange={this.handleChange2}
             checked={this.state.experience === 'junior'}
           />
           Junior
@@ -78,7 +78,7 @@ class Form extends Component {
             type="radio"
             name="experience"
             value="middle"
-            onChange={this.handleChange}
+            onChange={this.handleChange2}
             checked={this.state.experience === 'middle'}
           />
           Middle
@@ -88,7 +88,7 @@ class Form extends Component {
             type="radio"
             name="experience"
             value="senior"
-            onChange={this.handleChange}
+            onChange={this.handleChange2}
             checked={this.state.experience === 'senior'}
           />
           Senior

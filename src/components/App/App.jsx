@@ -21,7 +21,7 @@ import initialTodos from 'components/todos.json';
 export class App extends Component {
 
   state = {
-    // ! +++++++++ Книга контактов +++++++++++++ 
+    // ! +++++++++ Книга контактов STATE +++++++++++++ 
     contacts: [],
     name: "",
 
@@ -36,18 +36,39 @@ export class App extends Component {
 
 
 
-  // ! +++++++++ Книга контактов +++++++++++++ 
+  // ! +++++++++ Книга контактов МЕТОДЫ +++++++++++++ 
   contactInputId = nanoid();
 
-  handleChange1 = event => {
-    // const { name, value } = event.currentTarget;
-    // this.setState({ [name]: value });
 
-    this.setState({ name: event.currentTarget.value });
+  handleChange = event => {
+    console.log(event.currentTarget); //!
+    console.log(event.currentTarget.name); //!
+    console.log(event.currentTarget.value); //!
+
+    // this.setState({ name: event.currentTarget.value });
+    // this.setState({ [event.currentTarget.name]: event.currentTarget.value });
+
+    const { name, value } = event.currentTarget;
+    this.setState({ [name]: value });
   };
 
 
+  reset = () => {
+    this.setState({ name: '' });
+  };
 
+
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(this.state); //!
+    console.log(this.state.contacts); //!
+
+    this.state.contacts.push(this.state.name);
+
+    // this.props.onSubmit(this.state);
+
+    this.reset();
+  };
 
   //!____________ Книга контактов ___________ 
 
@@ -124,7 +145,8 @@ export class App extends Component {
   //*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   render() {
     // ! +++++++++ Книга контактов +++++++++++++ 
-
+    const { contacts } = this.state;
+    console.log(contacts);
 
     //!____________ Книга контактов ___________ 
     const { todos, filter } = this.state;
@@ -140,7 +162,7 @@ export class App extends Component {
       <Container>
         {/*//! +++++++++ Книга контактов +++++++++++++ */}
         <h1>Phonebook</h1>
-        <form onSubmit={this.handleSubmit1}>
+        <form onSubmit={this.handleSubmit}>
 
           <label htmlFor={this.contactInputId}>
             Name
@@ -148,7 +170,7 @@ export class App extends Component {
               type="text"
               name="name"
               value={this.state.name}
-              onChange={this.handleChange1}
+              onChange={this.handleChange}
               id={this.contactInputId}
             />
           </label>
@@ -158,10 +180,14 @@ export class App extends Component {
           </button>
 
           <h1>Contacts</h1>
-
+          <ul>
+            {contacts.map((contact) => (
+              <li>
+                <p>{contact}</p>
+              </li>
+            ))}
+          </ul>
         </form>
-
-
 
         {/*//!____________ Книга контактов ___________ */}
         <br />
@@ -174,20 +200,20 @@ export class App extends Component {
 
         {/* TODO: вынести в отдельный компонент */}
 
-        <div>
+        {/* <div>
           <p>Всего заметок: {totalTodoCount}</p>
           <p>Выполнено: {completedTodoCount}</p>
-        </div>
+        </div> */}
 
-        <TodoEditor onSubmit={this.addTodo} />
+        {/* <TodoEditor onSubmit={this.addTodo} />  */}
 
-        <Filter value={filter} onChange={this.changeFilter} />
+        {/* <Filter value={filter} onChange={this.changeFilter} /> */}
 
-        <TodoList
+        {/* <TodoList
           todos={visibleTodos}
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
-        />
+        /> */}
       </Container>
     );
   }
