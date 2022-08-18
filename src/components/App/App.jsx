@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+// ! +++++++++ Книга контактов +++++++++++++ 
+import { nanoid } from 'nanoid'
+
+//!____________ Книга контактов ___________ 
 import shortid from 'shortid';
 // import ColorPicker from './components/ColorPicker';
 // import Counter from './components/Counter';
@@ -9,11 +13,46 @@ import Filter from '../Filter';
 // import Form from './components/Form';
 import initialTodos from 'components/todos.json';
 
+
+
+
+
+
 export class App extends Component {
+
   state = {
+    // ! +++++++++ Книга контактов +++++++++++++ 
+    contacts: [],
+    name: "",
+
+
+
+
+    //!____________ Книга контактов ___________ 
+    
     todos: initialTodos,
     filter: '',
   };
+
+
+
+  // ! +++++++++ Книга контактов +++++++++++++ 
+  contactInputId = nanoid();
+
+  handleChange1 = event => {
+    // const { name, value } = event.currentTarget;
+    // this.setState({ [name]: value });
+
+    this.setState({ name: event.currentTarget.value });
+  };
+
+
+
+
+  //!____________ Книга контактов ___________ 
+
+
+
 
   addTodo = text => {
     console.log(text);
@@ -36,18 +75,18 @@ export class App extends Component {
   };
 
   toggleCompleted = todoId => {
-    // this.setState(prevState => ({
-    //   todos: prevState.todos.map(todo => {
-    //     if (todo.id === todoId) {
-    //       return {
-    //         ...todo,
-    //         completed: !todo.completed,
-    //       };
-    //     }
+    //* this.setState(prevState => ({
+    //*   todos: prevState.todos.map(todo => {
+    //*    if (todo.id === todoId) {
+    //*       return {
+    //*         ...todo,
+    //*         completed: !todo.completed,
+    //*       };
+    //*     }
 
-    //     return todo;
-    //   }),
-    // }));
+    //*     return todo;
+    //*   }),
+    //* }));
 
     this.setState(({ todos }) => ({
       todos: todos.map(todo =>
@@ -80,14 +119,59 @@ export class App extends Component {
     );
   };
 
+
+
+  //*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   render() {
+    // ! +++++++++ Книга контактов +++++++++++++ 
+
+
+    //!____________ Книга контактов ___________ 
     const { todos, filter } = this.state;
     const totalTodoCount = todos.length;
     const completedTodoCount = this.calculateCompletedTodos();
     const visibleTodos = this.getVisibleTodos();
 
+
+
+
+
     return (
       <Container>
+        {/*//! +++++++++ Книга контактов +++++++++++++ */}
+        <h1>Phonebook</h1>
+        <form onSubmit={this.handleSubmit1}>
+
+          <label htmlFor={this.contactInputId}>
+            Name
+            <input
+              type="text"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange1}
+              id={this.contactInputId}
+            />
+          </label>
+
+          <button type="submit">
+            Add contact
+          </button>
+
+          <h1>Contacts</h1>
+
+        </form>
+
+
+
+        {/*//!____________ Книга контактов ___________ */}
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+
         {/* TODO: вынести в отдельный компонент */}
 
         <div>
