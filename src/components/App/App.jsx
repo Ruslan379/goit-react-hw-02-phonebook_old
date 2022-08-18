@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // ! +++++++++ Книга контактов +++++++++++++ 
-import { nanoid } from 'nanoid'
-import 'components/App/Form.css';
+import { nanoid } from 'nanoid';
+// import 'components/App/Form.css';
 
 //!____________ Книга контактов ___________ 
 // import shortid from 'shortid';
@@ -9,6 +9,7 @@ import 'components/App/Form.css';
 // import Counter from './components/Counter';
 
 import { Container } from 'components/Container/Container';
+import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 // import TodoList from '../TodoList';
 // import TodoEditor from '../TodoEditor';
@@ -32,9 +33,9 @@ export class App extends Component {
     {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
   ],
-    filter: '',
-    name: '',
-    number: ''
+    filter: ''
+    // name: '',
+    // number: ''
 
 
 
@@ -49,53 +50,67 @@ export class App extends Component {
 
   // ! +++++++++ Книга контактов МЕТОДЫ +++++++++++++ 
 
-  contactInputId = nanoid();
+  //! перенесен в ContactForm
+  // contactInputId = nanoid();
 
 
+  formSubmitHandler = (newState, newContacts) => {
+    console.log(newState);
+    console.log(newContacts);
+    return newContacts
 
-  handleChange = event => {
-    // console.log(event.currentTarget); //!
-    // console.log(event.currentTarget.name); //!
-    // console.log(event.currentTarget.value); //!
+    // const { filter } = this.state;
+    // const normalizedFilter = filter.toLowerCase();
+    // const contacts = contacts1
 
-    // this.setState({ name: event.currentTarget.value });
-    // this.setState({ [event.currentTarget.name]: event.currentTarget.value });
-
-    const { name, value } = event.currentTarget;
-    this.setState({ [name]: value });
-  };
-
-
-  reset = () => {
-    this.setState({ name: '', number: '' });
-  };
+    // return contacts.filter(contact =>
+    //   contact.name.toLowerCase().includes(normalizedFilter),
+    // );
+  }
 
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const { contacts, name, number } = this.state;
+  //! перенесен в ContactForm
+  // handleChange = event => {
+  //   // console.log(event.currentTarget); //!
+  //   // console.log(event.currentTarget.name); //!
+  //   // console.log(event.currentTarget.value); //!
 
-    // console.log(this.state); //!
-    // console.log(this.state.contacts); //!
+  //   // this.setState({ name: event.currentTarget.value });
+  //   // this.setState({ [event.currentTarget.name]: event.currentTarget.value });
 
-    // this.state.contacts.push(this.state.name);
+  //   const { name, value } = event.currentTarget;
+  //   this.setState({ [name]: value });
+  // };
 
-    // const contactsObj = { name: this.state.name, id: nanoid() }
-    // console.log(contactsObj); //!
+  //! перенесен в ContactForm
+  // reset = () => {
+  //   this.setState({ name: '', number: '' });
+  // };
 
-    // this.state.contacts.push({ name: this.state.name, id: nanoid() });
-    contacts.push({ id: nanoid(), name: name, number: number, });
+  //! перенесен в ContactForm
+  // handleSubmit = event => {
+  //   event.preventDefault();
+  //   const { contacts, name, number } = this.state;
 
-    // this.props.onSubmit(this.state);
+  //   // console.log(this.state); //!
+  //   // console.log(this.state.contacts); //!
 
-    this.reset();
-  };
+  //   // this.state.contacts.push(this.state.name);
+
+  //   // const contactsObj = { name: this.state.name, id: nanoid() }
+  //   // console.log(contactsObj); //!
+
+  //   // this.state.contacts.push({ name: this.state.name, id: nanoid() });
+  //   contacts.push({ id: nanoid(), name: name, number: number, });
+
+  //   // this.props.onSubmit(this.state);
+
+  //   this.reset();
+  // };
 
   changeFilter = (event) => {
     this.setState({ filter: event.currentTarget.value });
   };
-
-
 
 
   getVisibleContacts = () => {
@@ -179,14 +194,18 @@ export class App extends Component {
     console.log("contacts: ", contacts); //!
     //  console.log("contactInputId: ", this.contactInputId); //!
 
+    const newContacts = this.formSubmitHandler();
+    console.log("newContacts: ", newContacts);
+
     const visibleContacts = this.getVisibleContacts();
+    // const visibleContacts = this.formSubmitHandler();
 
 
 
 
     //!____________ Книга контактов ___________ 
     // const { todos, filter } = this.state;
-    
+
     // const totalTodoCount = todos.length;
     // const completedTodoCount = this.calculateCompletedTodos();
 
@@ -199,7 +218,10 @@ export class App extends Component {
       <Container>
         {/*//! +++++++++ Книга контактов +++++++++++++ */}
         <h1>Phonebook</h1>
-        <form
+        <ContactForm
+          contacts={contacts}
+          onSubmit={this.formSubmitHandler} />
+        {/* <form
           className="Form"
           onSubmit={this.handleSubmit}>
 
@@ -238,7 +260,7 @@ export class App extends Component {
           <button type="submit">
             Add contact
           </button>
-        </form>
+        </form> */}
 
         <h2>Contacts</h2>
 
