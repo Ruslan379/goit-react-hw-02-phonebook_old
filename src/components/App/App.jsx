@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // ! +++++++++ Книга контактов +++++++++++++ 
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 // import 'components/App/Form.css';
 
 //!____________ Книга контактов ___________ 
@@ -57,6 +57,8 @@ export class App extends Component {
   formSubmitHandler = (newState, newContacts) => {
     console.log(newState);
     console.log(newContacts);
+    console.log(this.state.contacts);
+    
     return newContacts
 
     // const { filter } = this.state;

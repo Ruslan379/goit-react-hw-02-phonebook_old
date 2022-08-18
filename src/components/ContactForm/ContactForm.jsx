@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import 'components/ContactForm/ContactForm.css';
 
 
-import shortid from 'shortid';
+// import shortid from 'shortid';
 
 export class ContactForm extends Component {
   state = {
