@@ -8,10 +8,11 @@ import 'components/App/Form.css';
 // import ColorPicker from './components/ColorPicker';
 // import Counter from './components/Counter';
 
-import Container from '../Container';
+import { Container } from 'components/Container/Container';
+import { Filter } from 'components/Filter/Filter';
 // import TodoList from '../TodoList';
 // import TodoEditor from '../TodoEditor';
-// import Filter from '../Filter';
+
 
 // import Form from './components/Form';
 // import initialTodos from 'components/todos.json';
@@ -90,6 +91,22 @@ export class App extends Component {
     this.reset();
   };
 
+  changeFilter = (event) => {
+    this.setState({ filter: event.currentTarget.value });
+  };
+
+
+
+
+  getVisibleContacts = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter),
+    );
+  };
+
   //!____________ Книга контактов ___________ 
 
 
@@ -138,24 +155,16 @@ export class App extends Component {
   //   }));
   // };
 
-  // changeFilter = e => {
-  //   this.setState({ filter: e.currentTarget.value });
-  // };
 
-  // getVisibleTodos = () => {
-  //   const { filter, todos } = this.state;
-  //   const normalizedFilter = filter.toLowerCase();
+  
 
-  //   return todos.filter(todo =>
-  //     todo.text.toLowerCase().includes(normalizedFilter),
-  //   );
-  // };
 
+  //!
   // calculateCompletedTodos = () => {
-  //   const { todos } = this.state;
+  //   const { contacts } = this.state;
 
-  //   return todos.reduce(
-  //     (total, todo) => (todo.completed ? total + 1 : total),
+  //   return contacts.reduce(
+  //     (calc, contact) => (contact.completed ? calc + 1 : calc),
   //     0,
   //   );
   // };
@@ -165,18 +174,22 @@ export class App extends Component {
   //*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   render() {
     // ! +++++++++ Книга контактов +++++++++++++ 
-    const { contacts } = this.state;
+    const { contacts, name, number, filter } = this.state;
+    // const { contacts } = this.state;
     console.log("contacts: ", contacts); //!
     //  console.log("contactInputId: ", this.contactInputId); //!
+
+    const visibleContacts = this.getVisibleContacts();
 
 
 
 
     //!____________ Книга контактов ___________ 
     // const { todos, filter } = this.state;
+    
     // const totalTodoCount = todos.length;
     // const completedTodoCount = this.calculateCompletedTodos();
-    // const visibleTodos = this.getVisibleTodos();
+
 
 
 
@@ -199,7 +212,7 @@ export class App extends Component {
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
-              value={this.state.name}
+              value={name}
               onChange={this.handleChange}
               id={this.contactInputId}
             />
@@ -215,7 +228,7 @@ export class App extends Component {
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
-              value={this.state.number}
+              value={number}
               onChange={this.handleChange}
               id={this.contactInputId}
             />
@@ -227,9 +240,21 @@ export class App extends Component {
           </button>
         </form>
 
-          <h1>Contacts</h1>
+        <h2>Contacts</h2>
+
+        <Filter value={filter} onChange={this.changeFilter} />
+          
+          {/* <label>
+            Find contacts by name
+            <br />
+          <input
+            type="text"
+            value={filter}
+            onChange={this.changeFilter} />
+          </label> */}
+        
           <ul>
-            {contacts.map(({ id, name, number }) => (
+            {visibleContacts.map(({ id, name, number }) => (
               <li key={id}>
                 <p>{name}: {number}</p>
               </li>
@@ -243,7 +268,7 @@ export class App extends Component {
         <br />
         <br />
         <br />
-        <br />
+        <br />   
 
 
         {/* TODO: вынести в отдельный компонент */}
