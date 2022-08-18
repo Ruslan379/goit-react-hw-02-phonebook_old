@@ -27,12 +27,13 @@ export class App extends Component {
 
   state = {
     // ! +++++++++ Книга контактов STATE +++++++++++++ 
-    contacts: [
-    {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-    {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-    {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-    {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-  ],
+  //   contacts: [
+  //   {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+  //   {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+  //   {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+  //   {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+  // ],
+    contacts: [],
     filter: ''
     // name: '',
     // number: ''
@@ -54,20 +55,20 @@ export class App extends Component {
   // contactInputId = nanoid();
 
 
-  formSubmitHandler = (newState, newContacts) => {
+  formSubmitHandler = (newState = {}, newContacts) => {
     console.log("newState: ", newState);
     console.log("newContacts: ", newContacts);
+    console.log("this.state: ", this.state);
     console.log("this.state.contacts: ", this.state.contacts);
+
+    // this.setState(prevState => ({
+    //   contacts: prevState.contacts.push({id: 'id-5', name: 'Ruslan Fate', number: '777-77-77'}),
+    // }));
+
+    this.setState({ contacts: newContacts });
+
     
-    return newContacts
-
-    // const { filter } = this.state;
-    // const normalizedFilter = filter.toLowerCase();
-    // const contacts = contacts1
-
-    // return contacts.filter(contact =>
-    //   contact.name.toLowerCase().includes(normalizedFilter),
-    // );
+    // return newContacts;
   }
 
 
@@ -196,10 +197,11 @@ export class App extends Component {
     console.log("contacts: ", contacts); //!
     //  console.log("contactInputId: ", this.contactInputId); //!
 
-    const newContacts = this.formSubmitHandler();
-    console.log("newContacts: ", newContacts);
+    // const newContacts = this.formSubmitHandler();
+    // console.log("newContacts: ", newContacts);
 
     const visibleContacts = this.getVisibleContacts();
+    console.log("visibleContacts: ", visibleContacts);
     // const visibleContacts = this.formSubmitHandler();
 
 
@@ -266,7 +268,9 @@ export class App extends Component {
 
         <h2>Contacts</h2>
 
-        <Filter value={filter} onChange={this.changeFilter} />
+        <Filter
+          value={filter}
+          onChange={this.changeFilter} />
           
           {/* <label>
             Find contacts by name
