@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // ! +++++++++ Книга контактов +++++++++++++ 
 import { nanoid } from 'nanoid'
+import 'components/App/Form.css';
 
 //!____________ Книга контактов ___________ 
 // import shortid from 'shortid';
@@ -25,7 +26,8 @@ export class App extends Component {
   state = {
     // ! +++++++++ Книга контактов STATE +++++++++++++ 
     contacts: [],
-    name: ""
+    name: "",
+    number: ''
 
 
 
@@ -58,13 +60,13 @@ export class App extends Component {
 
 
   reset = () => {
-    this.setState({ name: '' });
+    this.setState({ name: '', number: '' });
   };
 
 
   handleSubmit = event => {
     event.preventDefault();
-    const { contacts, name } = this.state;
+    const { contacts, name, number } = this.state;
 
     // console.log(this.state); //!
     // console.log(this.state.contacts); //!
@@ -75,7 +77,7 @@ export class App extends Component {
     // console.log(contactsObj); //!
 
     // this.state.contacts.push({ name: this.state.name, id: nanoid() });
-    contacts.push({ name: name, id: nanoid() });
+    contacts.push({ id: nanoid(), name: name, number: number, });
 
     // this.props.onSubmit(this.state);
 
@@ -178,10 +180,13 @@ export class App extends Component {
       <Container>
         {/*//! +++++++++ Книга контактов +++++++++++++ */}
         <h1>Phonebook</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form
+          className="Form"
+          onSubmit={this.handleSubmit}>
 
           <label htmlFor={this.contactInputId}>
             Name
+            <br />
             <input
               type="text"
               name="name"
@@ -193,20 +198,38 @@ export class App extends Component {
               id={this.contactInputId}
             />
           </label>
+          <br />
+
+          <label htmlFor={this.contactInputId}>
+            Number
+            <br />
+            <input
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+              value={this.state.number}
+              onChange={this.handleChange}
+              id={this.contactInputId}
+            />
+          </label>
+          <br />
 
           <button type="submit">
             Add contact
           </button>
+        </form>
 
           <h1>Contacts</h1>
           <ul>
-            {contacts.map(({ id, name }) => (
+            {contacts.map(({ id, name, number }) => (
               <li key={id}>
-                <p>{name}</p>
+                <p>{name}: {number}</p>
               </li>
             ))}
           </ul>
-        </form>
+        
 
         {/*//!____________ Книга контактов ___________ */}
         <br />
