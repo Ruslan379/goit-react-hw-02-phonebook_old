@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid'
 
 //!____________ Книга контактов ___________ 
-import shortid from 'shortid';
+// import shortid from 'shortid';
 // import ColorPicker from './components/ColorPicker';
 // import Counter from './components/Counter';
 
@@ -13,7 +13,7 @@ import Container from '../Container';
 // import Filter from '../Filter';
 
 // import Form from './components/Form';
-import initialTodos from 'components/todos.json';
+// import initialTodos from 'components/todos.json';
 
 
 
@@ -64,13 +64,18 @@ export class App extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { contacts, name } = this.state;
+
     // console.log(this.state); //!
     // console.log(this.state.contacts); //!
 
-    this.state.contacts.push(this.state.name);
+    // this.state.contacts.push(this.state.name);
+
     // const contactsObj = { name: this.state.name, id: nanoid() }
-    // console.log(contactsObj);
-    // this.state.contacts.push(contactsObj);
+    // console.log(contactsObj); //!
+
+    // this.state.contacts.push({ name: this.state.name, id: nanoid() });
+    contacts.push({ name: name, id: nanoid() });
 
     // this.props.onSubmit(this.state);
 
@@ -154,7 +159,7 @@ export class App extends Component {
     // ! +++++++++ Книга контактов +++++++++++++ 
     const { contacts } = this.state;
     console.log("contacts: ", contacts); //!
-     console.log("contactInputId: ", this.contactInputId); //!
+    //  console.log("contactInputId: ", this.contactInputId); //!
 
 
 
@@ -195,9 +200,9 @@ export class App extends Component {
 
           <h1>Contacts</h1>
           <ul>
-            {contacts.map((contacts) => (
-              <li key={contacts}>
-                <p>{contacts}</p>
+            {contacts.map(({ id, name }) => (
+              <li key={id}>
+                <p>{name}</p>
               </li>
             ))}
           </ul>
