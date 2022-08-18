@@ -55,9 +55,9 @@ export class App extends Component {
 
 
   formSubmitHandler = (newState, newContacts) => {
-    console.log(newState);
-    console.log(newContacts);
-    console.log(this.state.contacts);
+    console.log("newState: ", newState);
+    console.log("newContacts: ", newContacts);
+    console.log("this.state.contacts: ", this.state.contacts);
     
     return newContacts
 
@@ -191,7 +191,7 @@ export class App extends Component {
   //*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   render() {
     // ! +++++++++ Книга контактов +++++++++++++ 
-    const { contacts, name, number, filter } = this.state;
+    const { contacts, filter } = this.state;
     // const { contacts } = this.state;
     console.log("contacts: ", contacts); //!
     //  console.log("contactInputId: ", this.contactInputId); //!
