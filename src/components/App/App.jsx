@@ -5,8 +5,7 @@ import React, { Component } from 'react';
 
 //!____________ Книга контактов ___________ 
 // import shortid from 'shortid';
-// import ColorPicker from './components/ColorPicker';
-// import Counter from './components/Counter';
+
 
 import { Container } from 'components/Container/Container';
 import { ContactForm } from 'components/ContactForm/ContactForm';
@@ -58,19 +57,16 @@ export class App extends Component {
 
 
   formSubmitHandler = (newState = {}, newContacts) => {
-    console.log("newState: ", newState);
-    console.log("newContacts: ", newContacts);
-    console.log("this.state: ", this.state);
-    console.log("this.state.contacts: ", this.state.contacts);
+    // console.log("newState: ", newState); //!
+    // console.log("newContacts: ", newContacts); //!
+    // console.log("this.state: ", this.state); //!
+    // console.log("this.state.contacts: ", this.state.contacts); //!
 
     // this.setState(prevState => ({
     //   contacts: prevState.contacts.push({id: 'id-5', name: 'Ruslan Fate', number: '777-77-77'}),
     // }));
 
     this.setState({ contacts: newContacts });
-
-    
-    // return newContacts;
   }
 
 
@@ -112,6 +108,7 @@ export class App extends Component {
 
   //   this.reset();
   // };
+
 
   changeFilter = (event) => {
     this.setState({ filter: event.currentTarget.value });
@@ -196,20 +193,16 @@ export class App extends Component {
     // ! +++++++++ Книга контактов +++++++++++++ 
     const { contacts, filter } = this.state;
     // const { contacts } = this.state;
-    console.log("contacts: ", contacts); //!
+    // console.log("contacts: ", contacts); //!
     //  console.log("contactInputId: ", this.contactInputId); //!
 
-    // const newContacts = this.formSubmitHandler();
-    // console.log("newContacts: ", newContacts);
 
     const visibleContacts = this.getVisibleContacts();
-    console.log("visibleContacts: ", visibleContacts);
-    // const visibleContacts = this.formSubmitHandler();
+    // console.log("visibleContacts: ", visibleContacts); //!
+    //!____________ Книга контактов ___________
+    
+    
 
-
-
-
-    //!____________ Книга контактов ___________ 
     // const { todos, filter } = this.state;
 
     // const totalTodoCount = todos.length;
@@ -217,13 +210,11 @@ export class App extends Component {
 
 
 
-
-
-
     return (
       <Container>
-        {/*//! +++++++++ Книга контактов +++++++++++++ */}
+
         <h1>Phonebook</h1>
+
         <ContactForm
           contacts={contacts}
           onSubmit={this.formSubmitHandler} />
@@ -283,7 +274,6 @@ export class App extends Component {
             onChange={this.changeFilter} />
           </label> */}
         
-
         <ContactList
           visibleContacts={visibleContacts} />
         
@@ -296,7 +286,7 @@ export class App extends Component {
           </ul> */}
         
 
-        {/*//!____________ Книга контактов ___________ */}
+
         <br />
         <br />
         <br />
@@ -328,14 +318,6 @@ export class App extends Component {
 
 // export default App;
 
-// const colorPickerOptions = [
-//   { label: 'red', color: '#F44336' },
-//   { label: 'green', color: '#4CAF50' },
-//   { label: 'blue', color: '#2196F3' },
-//   { label: 'grey', color: '#607D8B' },
-//   { label: 'pink', color: '#E91E63' },
-//   { label: 'indigo', color: '#3F51B5' },
-// ];
 
 
 //! old --------------------------------------------
