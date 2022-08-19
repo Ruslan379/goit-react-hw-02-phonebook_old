@@ -38,12 +38,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-//!
-
 //! alert с предупреждением о наявности контакта
 
 //! принимаем props от ContactForm contacts={contacts} из App
-
-//!____________ Книга контактов ___________
-
-//!____________ Книга контактов ___________ 
