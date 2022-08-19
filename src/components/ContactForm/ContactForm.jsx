@@ -121,7 +121,7 @@ export class ContactForm extends Component {
 
   render() {
     const { name, number } = this.state;
-    const { contacts } = this.props;
+    // const { contacts } = this.props; //!
     // console.log("contacts: ", contacts); //!
     // console.log("this.props.contacts: ", this.props.contacts); //!
     
