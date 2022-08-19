@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+
 // import classNames from 'classnames';
 import 'components/ContactList/ContactList.css';
 
@@ -23,6 +26,12 @@ export const ContactList = ({ visibleContacts, onDeleteTodo }) => (
     ))}
   </ul>
 );
+
+
+ContactList.propTypes = {
+  visibleContacts: PropTypes.array.isRequired,
+  onDeleteTodo: PropTypes.func.isRequired,
+};
 
 
 

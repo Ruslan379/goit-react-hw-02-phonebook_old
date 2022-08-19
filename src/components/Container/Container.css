@@ -2,12 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center
-
-  /* max-width: 1440px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px; */
 }
 
 h1 {

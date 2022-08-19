@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // import { nanoid } from 'nanoid';
 // import shortid from 'shortid';
@@ -15,6 +16,22 @@ import { ContactList } from 'components/ContactList/ContactList';
 // * +++++++++++++++++++++++++++ CLASS ++++++++++++++++++++++++++++++++++
 export class App extends Component {
 
+  static defaultProps = {
+    initialContacts: [],
+    initialFilter: ''
+  };
+
+
+  static propTypes = {
+    initialContacts: PropTypes.array.isRequired,
+    initialFilter: PropTypes.string.isRequired,
+
+    contacts: PropTypes.array,
+    filter: PropTypes.string
+  };
+
+
+
   state = {
   //   contacts: [
   //   {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
@@ -22,8 +39,8 @@ export class App extends Component {
   //   {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
   //   {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
   // ],
-    contacts: [],
-    filter: ''
+    contacts: this.props.initialContacts,
+    filter: this.props.initialFilter
     // name: '',
     // number: ''
   };
