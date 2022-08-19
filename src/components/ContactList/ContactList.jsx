@@ -5,16 +5,16 @@ import 'components/ContactList/ContactList.css';
 
 
 export const ContactList = ({ visibleContacts, onDeleteTodo }) => (
-  <ul className="TodoList">
+  <ul className="ContactList">
     {visibleContacts.map(({ id, name, number }) => (
       <li
         key={id}
-        className="TodoList__item"
+        className="ContactList__item"
       >
-        <p className="TodoList__text">{name}: <span className="TodoList__number">{number}</span></p>
+        <p className="ContactList__text">{name}: <span className="ContactList__number">{number}</span></p>
         <button
           type="button"
-          className="TodoList__btn"
+          className="ContactList__btn"
           onClick={() => onDeleteTodo(id)}
         >
           Delete

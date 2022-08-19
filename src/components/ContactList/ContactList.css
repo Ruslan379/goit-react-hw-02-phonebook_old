@@ -1,7 +1,7 @@
 
 
 
-.TodoList {
+.ContactList {
   padding: 0;
   /* margin: 0; */
   list-style: none;
@@ -14,7 +14,7 @@
 
 
 
-.TodoList__item {
+.ContactList__item {
   position: relative;
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@
 
 
 
-.TodoList__text {
+.ContactList__text {
   margin-top: 0;
   margin-bottom: 0;
   margin-right: 24px;
@@ -41,13 +41,13 @@
 }
 
 
-.TodoList__number {
+.ContactList__number {
   color: #000c75;
 }
 
 
 
-.TodoList__btn {
+.ContactList__btn {
   border: none;
   font: inherit;
   cursor: pointer;
@@ -65,13 +65,7 @@
 
 
 
-.TodoList__btn:hover,
-.TodoList__btn:focus {
+.ContactList__btn:hover,
+.ContactList__btn:focus {
   background-color: #be007f;
 }
-
-
-
-/* .TodoList__btn:active {
-  box-shadow: 0px 4px 4px #00000026;
-} */

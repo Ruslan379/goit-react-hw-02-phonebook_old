@@ -205,6 +205,8 @@ export class App extends Component {
 
     const visibleContacts = this.getVisibleContacts();
     // console.log("visibleContacts: ", visibleContacts); //!
+
+     const totalContacts = contacts.length;
     //!____________ Книга контактов ___________
     
     
@@ -223,7 +225,9 @@ export class App extends Component {
 
         <ContactForm
           contacts={contacts}
-          onSubmit={this.formSubmitHandler} />
+          onSubmit={this.formSubmitHandler}
+        />
+
         {/* <form
           className="Form"
           onSubmit={this.handleSubmit}>
@@ -266,10 +270,12 @@ export class App extends Component {
         </form> */}
 
         <h2>Contacts</h2>
+        <p>Total: {totalContacts}</p>
 
         <Filter
           value={filter}
-          onChange={this.changeFilter} />
+          onChange={this.changeFilter}
+        />
           
           {/* <label>
             Find contacts by name

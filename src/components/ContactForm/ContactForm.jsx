@@ -236,7 +236,9 @@ export class ContactForm extends Component {
           </label>
           <br />
 
-          <button type="submit">
+        <button
+          className="Form__btn"
+          type="submit">
             Add contact
           </button>
         </form>
