@@ -1,3 +1,6 @@
+/* import styled from '@emotion/styled'; */
+
+
 .Form {
     display: flex;
     flex-direction: column;
@@ -16,7 +19,7 @@
 
 
 
-.Form__btn {
+.FormBtn {
     border: none;
     font: inherit;
     cursor: pointer;
@@ -35,7 +38,7 @@
 
 
 
-.Form__btn:hover,
-.Form__btn:focus {
+.FormBtn:hover,
+.FormBtn:focus {
     background-color: #00aa44;
 }

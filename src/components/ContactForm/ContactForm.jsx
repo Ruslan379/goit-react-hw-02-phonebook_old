@@ -7,8 +7,10 @@ import { nanoid } from 'nanoid';
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
 // import * as yup from 'yup';
 
-import 'components/ContactForm/ContactForm.css';
+// import 'components/ContactForm/ContactForm.css';
 // import styled from 'styled-components';
+import css from 'components/ContactForm/ContactForm.module.css' //todo = старый вариант импорта стилей
+
 
 
 
@@ -116,7 +118,7 @@ export class ContactForm extends Component {
 // * +++++++++++++++++++++++++++ MARKUP ++++++++++++++++++++++++++++++++++
     return (
       <form
-          className="Form"
+          className={css.Form}
           onSubmit={this.handleSubmit}>
 
           <label htmlFor={this.contactInputId}>
@@ -152,7 +154,7 @@ export class ContactForm extends Component {
           <br />
 
         <button
-          className="Form__btn"
+          className={css.FormBtn}
           type="submit">
             Add contact
           </button>

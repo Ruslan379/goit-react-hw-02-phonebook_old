@@ -1,3 +1,5 @@
+/* import styled from '@emotion/styled'; */
+
 
 .ContactList {
   padding: 0;
@@ -12,7 +14,7 @@
 
 
 
-.ContactList__item {
+.ContactListItem {
   position: relative;
   display: flex;
   align-items: center;
@@ -26,7 +28,7 @@
 
 
 
-.ContactList__text {
+.ContactListText {
   margin-top: 0;
   margin-bottom: 0;
   margin-right: 24px;
@@ -39,13 +41,13 @@
 }
 
 
-.ContactList__number {
+.ContactListNumber {
   color: #000c75;
 }
 
 
 
-.ContactList__btn {
+.ContactListBtn {
   border: none;
   font: inherit;
   cursor: pointer;
@@ -63,7 +65,7 @@
 
 
 
-.ContactList__btn:hover,
-.ContactList__btn:focus {
+.ContactListBtn:hover,
+.ContactListBtn:focus {
   background-color: #be007f;
 }

@@ -1,4 +1,7 @@
-.Filter__label {
+/* import styled from '@emotion/styled'; */
+
+
+.FilterLabel {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +12,7 @@
 
 }
 
-.Filter__input {
+.FilterInput {
   margin-top: 5px;
   font-size: 18px;
   font-weight: 600;
