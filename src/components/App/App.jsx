@@ -11,6 +11,8 @@ import React, { Component } from 'react';
 import { Container } from 'components/Container/Container';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
+import { ContactList } from 'components/ContactList/ContactList';
+
 // import TodoList from '../TodoList';
 // import TodoEditor from '../TodoEditor';
 
@@ -281,13 +283,17 @@ export class App extends Component {
             onChange={this.changeFilter} />
           </label> */}
         
-          <ul>
+
+        <ContactList
+          visibleContacts={visibleContacts} />
+        
+          {/* <ul>
             {visibleContacts.map(({ id, name, number }) => (
               <li key={id}>
                 <p>{name}: {number}</p>
               </li>
             ))}
-          </ul>
+          </ul> */}
         
 
         {/*//!____________ Книга контактов ___________ */}
