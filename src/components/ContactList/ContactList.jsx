@@ -24,4 +24,6 @@ export const ContactList = ({ visibleContacts, onDeleteTodo }) => (
   </ul>
 );
 
+
+
 // export default Filter;

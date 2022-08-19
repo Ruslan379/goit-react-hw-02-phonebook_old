@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-// ! +++++++++ Книга контактов +++++++++++++ 
-// import { nanoid } from 'nanoid';
-// import 'components/App/Form.css';
 
-//!____________ Книга контактов ___________ 
+// import { nanoid } from 'nanoid';
 // import shortid from 'shortid';
 
 
@@ -12,22 +9,13 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
 
-// import TodoList from '../TodoList';
-// import TodoEditor from '../TodoEditor';
-
-
-// import Form from './components/Form';
-// import initialTodos from 'components/todos.json';
 
 
 
-
-
-
+// * +++++++++++++++++++++++++++ CLASS ++++++++++++++++++++++++++++++++++
 export class App extends Component {
 
   state = {
-    // ! +++++++++ Книга контактов STATE +++++++++++++ 
   //   contacts: [
   //   {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
   //   {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
@@ -38,20 +26,12 @@ export class App extends Component {
     filter: ''
     // name: '',
     // number: ''
-
-
-
-
-    //!____________ Книга контактов ___________ 
-    
-    // todos: initialTodos,
-    // filter: '',
   };
 
 
 
-  // ! +++++++++ Книга контактов МЕТОДЫ +++++++++++++ 
 
+// * +++++++++++++++++++++++++++ МЕТОДЫ ++++++++++++++++++++++++++++++++++
   //! перенесен в ContactForm
   // contactInputId = nanoid();
 
@@ -130,73 +110,12 @@ export class App extends Component {
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
-  //!____________ Книга контактов ___________ 
 
 
 
-
-  // addTodo = text => {
-  //   console.log(text);
-  //   const todo = {
-  //     id: shortid.generate(),
-  //     text,
-  //     completed: false,
-  //   };
-
-  //   this.setState(({ todos }) => ({
-  //     // todos: [todo, ...todos],
-  //     todos: [...todos, todo],
-  //   }));
-  // };
-
-  // deleteTodo = todoId => {
-  //   this.setState(prevState => ({
-  //     todos: prevState.todos.filter(todo => todo.id !== todoId),
-  //   }));
-  // };
-
-  // toggleCompleted = todoId => {
-  //   //* this.setState(prevState => ({
-  //   //*   todos: prevState.todos.map(todo => {
-  //   //*    if (todo.id === todoId) {
-  //   //*       return {
-  //   //*         ...todo,
-  //   //*         completed: !todo.completed,
-  //   //*       };
-  //   //*     }
-
-  //   //*     return todo;
-  //   //*   }),
-  //   //* }));
-
-  //   this.setState(({ todos }) => ({
-  //     todos: todos.map(todo =>
-  //       todo.id === todoId
-  //         ? { ...todo, completed: !todo.completed }
-  //         : todo,
-  //     ),
-  //   }));
-  // };
-
-
-  
-
-
-  //!
-  // calculateCompletedTodos = () => {
-  //   const { contacts } = this.state;
-
-  //   return contacts.reduce(
-  //     (calc, contact) => (contact.completed ? calc + 1 : calc),
-  //     0,
-  //   );
-  // };
-
-
-
-  //*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// * +++++++++++++++++++++++++++ RENDER ++++++++++++++++++++++++++++++++++
   render() {
-    // ! +++++++++ Книга контактов +++++++++++++ 
+
     const { contacts, filter } = this.state;
     // const { contacts } = this.state;
     // console.log("contacts: ", contacts); //!
@@ -206,18 +125,11 @@ export class App extends Component {
     const visibleContacts = this.getVisibleContacts();
     // console.log("visibleContacts: ", visibleContacts); //!
 
-     const totalContacts = contacts.length;
-    //!____________ Книга контактов ___________
-    
-    
-
-    // const { todos, filter } = this.state;
-
-    // const totalTodoCount = todos.length;
-    // const completedTodoCount = this.calculateCompletedTodos();
+    const totalContacts = contacts.length;
 
 
 
+// * +++++++++++++++++++++++++++ MARKUP ++++++++++++++++++++++++++++++++++
     return (
       <Container>
 
@@ -298,33 +210,7 @@ export class App extends Component {
               </li>
             ))}
           </ul> */}
-        
 
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />   
-
-
-        {/* TODO: вынести в отдельный компонент */}
-
-        {/* <div>
-          <p>Всего заметок: {totalTodoCount}</p>
-          <p>Выполнено: {completedTodoCount}</p>
-        </div> */}
-
-        {/* <TodoEditor onSubmit={this.addTodo} />  */}
-
-        {/* <Filter value={filter} onChange={this.changeFilter} /> */}
-
-        {/* <TodoList
-          todos={visibleTodos}
-          onDeleteTodo={this.deleteTodo}
-          onToggleCompleted={this.toggleCompleted}
-        /> */}
       </Container>
     );
   }

@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
+
 import { nanoid } from 'nanoid';
-import 'components/ContactForm/ContactForm.css';
-
-
 // import shortid from 'shortid';
+
+// import { Formik, Form, Field, ErrorMessage } from 'formik';
+// import * as yup from 'yup';
+
+import 'components/ContactForm/ContactForm.css';
+// import styled from 'styled-components';
+
+
+
+// * +++++++++++++++++++++++++++ CLASS ++++++++++++++++++++++++++++++++++
 
 export class ContactForm extends Component {
   state = {
     name: '',
     number: ''
-    // tag: '',
-    // experience: 'junior',
-    // licence: false,
   };
 
   contactInputId = nanoid();
   
 
+// * +++++++++++++++++++++++++++ МЕТОДЫ ++++++++++++++++++++++++++++++++++
 
   handleChange = event => {
     // console.log(event.currentTarget); //!
@@ -69,7 +75,6 @@ export class ContactForm extends Component {
       contacts.push({ id: nanoid(), name: name, number: number, });
       }
     
-
     this.props.onSubmit(this.state, this.props.contacts);
 
     // console.log("contacts[0].name: ", contacts[0].name); //!
@@ -78,47 +83,7 @@ export class ContactForm extends Component {
   };
 
 
-
-
-
-
-
-
-
-
-
-  // nameInputId = shortid.generate();
-  // tagInputId = shortid.generate();
-
-  // handleChange2 = e => {
-  //   const { name, value } = e.currentTarget;
-
-  //   this.setState({ [name]: value });
-  // };
-
-  // handleSubmit = e => {
-  //   e.preventDefault();
-
-  //   this.props.onSubmit(this.state);
-
-  //   this.reset();
-  // };
-
-  // handleLicenceChange = e => {
-  //   console.log(e.currentTarget.checked);
-
-  //   this.setState({ licence: e.currentTarget.checked });
-  // };
-
-  // reset = () => {
-  //   this.setState({ name: '', tag: '' });
-  // };
-
-
-
-
-
-
+// * +++++++++++++++++++++++++++ RENDER ++++++++++++++++++++++++++++++++++
   render() {
     const { name, number } = this.state;
     // const { contacts } = this.props; //!
@@ -126,80 +91,10 @@ export class ContactForm extends Component {
     // console.log("this.props.contacts: ", this.props.contacts); //!
     
 
+
+
+// * +++++++++++++++++++++++++++ MARKUP ++++++++++++++++++++++++++++++++++
     return (
-      // <form onSubmit={this.handleSubmit}>
-      //   <label htmlFor={this.nameInputId}>
-      //     Имя
-      //     <input
-      //       type="text"
-      //       name="name"
-      //       value={this.state.name}
-      //       onChange={this.handleChange2}
-      //       id={this.nameInputId}
-      //     />
-      //   </label>
-      //   <br />
-      //   <label htmlFor={this.tagInputId}>
-      //     Прозвище
-      //     <input
-      //       type="text"
-      //       name="tag"
-      //       value={this.state.tag}
-      //       onChange={this.handleChange2}
-      //       id={this.tagInputId}
-      //     />
-      //   </label>
-
-      //   <p>Ваш уровень:</p>
-      //   <label>
-      //     <input
-      //       type="radio"
-      //       name="experience"
-      //       value="junior"
-      //       onChange={this.handleChange2}
-      //       checked={this.state.experience === 'junior'}
-      //     />
-      //     Junior
-      //   </label>
-
-      //   <label>
-      //     <input
-      //       type="radio"
-      //       name="experience"
-      //       value="middle"
-      //       onChange={this.handleChange2}
-      //       checked={this.state.experience === 'middle'}
-      //     />
-      //     Middle
-      //   </label>
-      //   <label>
-      //     <input
-      //       type="radio"
-      //       name="experience"
-      //       value="senior"
-      //       onChange={this.handleChange2}
-      //       checked={this.state.experience === 'senior'}
-      //     />
-      //     Senior
-      //   </label>
-
-      //   <br />
-
-      //   <label>
-      //     <input
-      //       type="checkbox"
-      //       name="licence"
-      //       checked={this.state.licence}
-      //       onChange={this.handleLicenceChange}
-      //     />
-      //     Согласен с условием
-      //   </label>
-
-      //   <button type="submit" disabled={!this.state.licence}>
-      //     Отправить
-      //   </button>
-      // </form>
-
       <form
           className="Form"
           onSubmit={this.handleSubmit}>
