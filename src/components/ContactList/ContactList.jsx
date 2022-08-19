@@ -1,10 +1,10 @@
 import React from 'react';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import 'components/ContactList/ContactList.css';
 
 
 
-export const ContactList = ({ visibleContacts }) => (
+export const ContactList = ({ visibleContacts, onDeleteTodo }) => (
   <ul className="TodoList">
     {visibleContacts.map(({ id, name, number }) => (
       <li
@@ -15,7 +15,7 @@ export const ContactList = ({ visibleContacts }) => (
         <button
           type="button"
           className="TodoList__btn"
-          // onClick={() => onDeleteTodo(id)}
+          onClick={() => onDeleteTodo(id)}
         >
           Delete
         </button>

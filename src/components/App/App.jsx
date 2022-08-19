@@ -124,6 +124,12 @@ export class App extends Component {
     );
   };
 
+
+  deleteTodo = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
   //!____________ Книга контактов ___________ 
 
 
@@ -275,7 +281,9 @@ export class App extends Component {
           </label> */}
         
         <ContactList
-          visibleContacts={visibleContacts} />
+          visibleContacts={visibleContacts}
+          onDeleteTodo={this.deleteTodo}
+        />
         
           {/* <ul>
             {visibleContacts.map(({ id, name, number }) => (
