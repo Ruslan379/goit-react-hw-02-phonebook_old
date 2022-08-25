@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
 // import shortid from 'shortid';
 
 
@@ -46,28 +46,103 @@ export class App extends Component {
   };
 
 
-
-
 // * +++++++++++++++++++++++++++ МЕТОДЫ ++++++++++++++++++++++++++++++++++
   //! перенесен в ContactForm
   // contactInputId = nanoid();
 
 
-  formSubmitHandler = (newState = {}, newContacts) => {
-    // console.log("newState: ", newState); //!
-    // console.log("newContacts: ", newContacts); //!
-    // console.log("this.state: ", this.state); //!
-    // console.log("this.state.contacts: ", this.state.contacts); //!
-
-    // this.setState(prevState => ({
-    //   contacts: prevState.contacts.push({id: 'id-5', name: 'Ruslan Fate', number: '777-77-77'}),
-    // }));
-
-    this.setState({ contacts: newContacts });
-  }
+//! Добавление контакта в this.state.contacts
+  addСontact = (name, number) => {
+    this.setState({ contacts: [ ...this.state.contacts, { id: nanoid(), name, number }  ] }) //* Так ПРАВИЛЬНО!!!
+    // this.state.contacts.push({ id: nanoid(), name, number }); //? Так Работает, но НЕЛЬЗЯ!!!
+    // this.setState({ contacts: [this.state.contacts.push({ id: nanoid(), name, number })] }); //! Так НЕ РАБОТАЕТ!!!
+  };
 
 
-  //! перенесен в ContactForm
+
+  //! alert с предупреждением о наявности контакта
+  alertInputContact = (name, number) => {
+    const contacts = this.state.contacts 
+    
+    if (contacts.find(item => item.name.toLowerCase() === name.toLowerCase())) {
+        alert(`${name} is already in contacts.`);
+        return;
+    } else {
+      // this.setState({ contacts }); // Обновление state.contacts - Уже НЕ НАДО!!!
+      this.addСontact(name, number); 
+      // записываю contacts в хранилище localStorage: ==>  НЕ ЗДЕСЬ, в componentDidUpdate!!!
+      // localStorage.setItem('contacts', JSON.stringify(contacts));
+      // this.saveLocalStorage(contacts);
+      }
+  };
+
+
+
+  //! NEW - передача пропсов name и number из ContactForm
+  formSubmitHandler = (name, number) => {
+    // console.log("name: ", name); //!
+    // console.log("number: ", number); //!
+    // this.setState({ name, number }); //? 
+    // console.log("state ДО: ", this.state); //!
+
+    //! alert с предупреждением о наявности контакта
+    this.alertInputContact(name, number)
+    // const contacts = this.state.contacts 
+    // // console.log("contacts ДО: ", contacts); //!
+    
+    // if (contacts.find(item => item.name.toLowerCase() === name.toLowerCase())) {
+    //     alert(`${name} is already in contacts.`);
+    //     return;
+    // } else {
+    //   // this.setState({ name, number }); 
+    // // this.setState({ contacts }); //? Обновление state.contacts - Уже НЕ НАДО!!!
+    //   this.addСontact(name, number); 
+    //   //? записываю contacts в хранилище localStorage:
+    //   localStorage.setItem('contacts', JSON.stringify(contacts));
+    //   }
+  };
+
+  //! запись значения из input-(Find contacts by name) в this.setState.filter
+  changeFilter = (event) => {
+    this.setState({ filter: event.currentTarget.value });
+  };
+
+
+  //! Создание нового массива объектов из this.state.contacts с учетом значения поиска из this.state.filter
+  getVisibleContacts = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter),
+    );
+  };
+
+
+  //! Создание нового массива объектов из this.state.contacts с учетом удаления контакта по его contact.id
+  deleteTodo = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
+
+
+//? old formSubmitHandler
+  // formSubmitHandler = (newState = {}, newContacts) => {
+  //   // console.log("newState: ", newState); //!
+  //   // console.log("newContacts: ", newContacts); //!
+  //   // console.log("this.state: ", this.state); //!
+  //   // console.log("this.state.contacts: ", this.state.contacts); //!
+
+  //   // this.setState(prevState => ({
+  //   //   contacts: prevState.contacts.push({id: 'id-5', name: 'Ruslan Fate', number: '777-77-77'}),
+  //   // }));
+
+  //   this.setState({ contacts: newContacts });
+  // }
+
+  //? перенесен в ContactForm
   // handleChange = event => {
   //   // console.log(event.currentTarget); //!
   //   // console.log(event.currentTarget.name); //!
@@ -80,12 +155,12 @@ export class App extends Component {
   //   this.setState({ [name]: value });
   // };
 
-  //! перенесен в ContactForm
+  //? перенесен в ContactForm
   // reset = () => {
   //   this.setState({ name: '', number: '' });
   // };
 
-  //! перенесен в ContactForm
+  //? перенесен в ContactForm
   // handleSubmit = event => {
   //   event.preventDefault();
   //   const { contacts, name, number } = this.state;
@@ -105,30 +180,6 @@ export class App extends Component {
 
   //   this.reset();
   // };
-
-
-  changeFilter = (event) => {
-    this.setState({ filter: event.currentTarget.value });
-  };
-
-
-  getVisibleContacts = () => {
-    const { filter, contacts } = this.state;
-    const normalizedFilter = filter.toLowerCase();
-
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter),
-    );
-  };
-
-
-  deleteTodo = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-    }));
-  };
-
-
 
 // * +++++++++++++++++++++++++++ RENDER ++++++++++++++++++++++++++++++++++
   render() {
@@ -153,7 +204,7 @@ export class App extends Component {
         <h1>Phonebook</h1>
 
         <ContactForm
-          contacts={contacts}
+          // contacts={contacts}
           onSubmit={this.formSubmitHandler}
         />
 
